@@ -1,0 +1,4 @@
+out/
+*.tar.xz
+.DS_Store
+__pycache__/
