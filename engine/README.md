@@ -53,11 +53,28 @@ brew install bison pkgconf
 bash engine/build.sh
 bash engine/package.sh 1.0
 bash engine/package-d3dmetal.sh "Evaluation environment for Windows games 4.0 beta 3.dmg"
-# then, in MetalHorizon: bash app/update-components.sh blackwell-engine-1.0 <engine tarball> <d3dmetal tarball>
+bash app/update-components.sh blackwell-engine-1.0 ~/BlackwellEngine-build/blackwell-engine-1.0.tar.xz ~/BlackwellEngine-build/d3dmetal-4.0b3-redist.tar.xz
 ```
 
-Les deux tarballs vont dans la release `blackwell-engine-1.0` de ce dépôt ; MetalHorizon (`app/build-app.sh`) construit l'app qui
+Les deux tarballs vont dans la release GitHub `blackwell-engine-1.0`, puis `app/build-app.sh` construit l'app qui
 les connaît.
+
+## Variante Steam (expérimentale)
+
+MetalHorizon joue aussi l'édition **Steam** de Forza Horizon 6, avec un second moteur : les 9 patches ci-dessus,
+plus deux patches de Highball copiés tels quels ([`patches/ORIGIN-steam.md`](patches/ORIGIN-steam.md),
+LGPL-2.1-or-later) pour qu'une fenêtre de lanceur (celle de Steam) s'affiche au lieu de rester noire. Vérifiés
+sans conflit sur l'arbre de travail, mais **pas vérifiés en jeu** : ce projet n'a pas de copie Steam de FH6.
+
+```sh
+bash engine/build.sh --series series-steam ~/BlackwellEngine-build-steam
+bash engine/package.sh steam-1.0 ~/BlackwellEngine-build-steam
+```
+
+Produit `blackwell-engine-steam-<version>.tar.xz`, publié à côté de `blackwell-engine-<version>.tar.xz` dans la
+même release GitHub. L'app choisit ce moteur toute seule quand le dossier du jeu a l'air d'une installation
+Steam (`steam_appid.txt` ou `steam_api64.dll`), et lance le jeu via Steam lui-même (`steam.exe -applaunch`),
+pour que le client Steam tourne dans le même préfixe (sans ça, Highball note que le jeu se referme après ~12 s).
 
 ## Encore à faire
 
