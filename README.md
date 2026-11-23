@@ -30,7 +30,7 @@ distributed here.
 - GnuTLS (with Nettle built in, needing only GMP), GMP, FreeType and MoltenVK are built here for x86_64
   ([`engine/build-deps.sh`](engine/build-deps.sh)) and shipped in the engine's `lib/` with `@loader_path` names.
 
-## Build it
+
 
 On an Apple silicon Mac with Rosetta, Xcode Command Line Tools, Python 3, `brew install bison pkgconf`:
 
